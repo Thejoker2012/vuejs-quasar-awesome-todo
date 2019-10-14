@@ -19,6 +19,7 @@ const routes = [
       { path: '/role', component: () => import('pages/Role') },
       { path: '/scalalikert', component: () => import('pages/ScalaLikert') },
       { path: '/student', component: () => import('pages/Student') },
+      { path: '/teacher', component: () => import('pages/Teacher') },
       { path: '/user', component: () => import('pages/User') }
     ]
   }

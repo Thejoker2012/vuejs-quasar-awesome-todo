@@ -1,86 +1,54 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh lpR fFf">
     <q-header elevated>
+
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          icon="menu"
-          aria-label="Menu"
-        />
 
-        <q-toolbar-title>
-          Quasar App
+        <q-toolbar-title class="absolute-center">
+          Comissão Própria de Avaliação
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
+    <q-footer>
+      <q-tabs>
+        <q-route-tab
+          v-for="nav in navs"
+          :key="nav.label"
+          :to="nav.to"
+          :icon="nav.icon"
+          :label="nav.label" />
+      </q-tabs>
+    </q-footer>
+
     <q-drawer
       v-model="leftDrawerOpen"
+      :breakpoint="767"
+      :width="250"
       show-if-above
       bordered
-      content-class="bg-grey-2"
+      content-class="bg-primary"
     >
-      <q-list>
-        <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
+      <q-list dark>
+        <q-item-label header>Navigation</q-item-label>
+
+        <q-item
+          v-for="nav in navs"
+          :key="nav.label"
+          class="text-grey-4"
+          :to="nav.to"
+          exact
+          clickable>
           <q-item-section avatar>
-            <q-icon name="school" />
+            <q-icon :name="nav.icon" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
+            <q-item-label>{{nav.label}}</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="code" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="chat" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Discord Chat Channel</q-item-label>
-            <q-item-label caption>chat.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="record_voice_over" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Forum</q-item-label>
-            <q-item-label caption>forum.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://twitter.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="rss_feed" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Twitter</q-item-label>
-            <q-item-label caption>@quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://facebook.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="public" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Facebook</q-item-label>
-            <q-item-label caption>@QuasarFramework</q-item-label>
-          </q-item-section>
-        </q-item>
+
+
+
       </q-list>
     </q-drawer>
 
@@ -96,8 +64,110 @@ export default {
 
   data () {
     return {
-      leftDrawerOpen: false
+      leftDrawerOpen: false,
+      navs:[
+        {
+          label:'Todo',
+          icon:'list',
+          to:'/'
+        },
+        {
+          label:'Settings',
+          icon:'settings',
+          to:'/settings'
+        },
+        {
+          label:'Answer',
+          icon:'speaker_notes',
+          to:'/answer'
+        },
+        {
+          label:'Course',
+          icon:'picture_in_picture',
+          to:'/course'
+        },
+        {
+          label:'Discipline',
+          icon:'bookmarks',
+          to:'/discipline'
+        },
+        {
+          label:'Evaluation',
+          icon:'menu_book',
+          to:'/evaluation'
+        },
+        {
+          label:'Institution',
+          icon:'domain',
+          to:'/institution'
+        },
+        {
+          label:'Institution Type',
+          icon:'domain',
+          to:'/institutiontype'
+        },
+        {
+          label:'Local',
+          icon:'room',
+          to:'/local'
+        },
+        {
+          label:'Option',
+          icon:'ballot',
+          to:'/option'
+        },
+        {
+          label:'Period',
+          icon:'label',
+          to:'/period'
+        },
+        {
+          label:'Question',
+          icon:'assignment',
+          to:'/question'
+        },
+        {
+          label:'Role',
+          icon:'assignment_ind',
+          to:'/role'
+        },
+        {
+          label:'Scala Likerts',
+          icon:'adjust',
+          to:'/scalalikert'
+        },
+         {
+          label:'Student',
+          icon:'school',
+          to:'/student'
+        },
+         {
+          label:'Teacher',
+          icon:'person',
+          to:'/teacher'
+        },
+         {
+          label:'User',
+          icon:'supervised_user_circle',
+          to:'/user'
+        },
+      ]
+
     }
   }
 }
 </script>
+
+<style lang="scss">
+  @media screen and (min-width: 768px) {
+
+    .q-footer{
+      display: none;
+    }
+  }
+  .q-drawer {
+    .q-router-link--exact-active{
+      color:white !important;
+    }
+  }
+</style>
