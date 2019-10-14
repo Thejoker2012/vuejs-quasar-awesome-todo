@@ -35,38 +35,14 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 
 export default {
-  data() {
-    return {
-      tasks:[
-        {
-          id: 1,
-          name: 'Go to Shop',
-          completed: false,
-          dueDate: '22/06/2019',
-          dueTime: '18:00'
-        },
-        {
-          id: 2,
-          name: 'Get bananas',
-          completed: false,
-          dueDate: '22/06/2019',
-          dueTime: '18:00'
-        },
-        {
-          id: 3,
-          name: 'Get a car',
-          completed: false,
-          dueDate: '22/06/2019',
-          dueTime: '18:00'
-        }
-
-      ]
+  computed:{
+    tasks(){
+      return this.$store.getters['tasks/tasks']
     }
-  },
-
-
+  }
 }
 </script>
 
